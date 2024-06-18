@@ -11,6 +11,10 @@ const ArticleComments = ({ article_id }) => {
     setIsLoading(true);
     getArticleComments(article_id)
       .then((commentsFromApi) => {
+        console.log(commentsFromApi);
+        if (commentsFromApi.length === 0) {
+          setErr("Oops, no comments yet!");
+        }
         setComments(commentsFromApi);
         setIsLoading(false);
       })
