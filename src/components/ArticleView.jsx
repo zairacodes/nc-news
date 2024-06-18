@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getArticleById } from "../utils/api";
+import Collapsible from "react-collapsible";
+import ArticleComments from "./ArticleComments";
 
 const ArticleView = () => {
   const { article_id } = useParams();
@@ -12,13 +14,8 @@ const ArticleView = () => {
     setIsLoading(true);
     getArticleById(article_id)
       .then((articleFromApi) => {
-        if (articleFromApi) {
-          setArticle(articleFromApi);
-          setIsLoading(false);
-        } else {
-          setErr("Article not found.");
-          setIsLoading(false);
-        }
+        setArticle(articleFromApi);
+        setIsLoading(false);
       })
       .catch((err) => {
         setErr("Sorry, something went wrong.");
@@ -46,6 +43,9 @@ const ArticleView = () => {
         <p>Votes: {article.votes}</p>
         <p>Comments: {article.comment_count}</p>
       </div>
+      <Collapsible trigger="View all comments">
+        <ArticleComments article_id={article_id} />
+      </Collapsible>
     </section>
   );
 };
