@@ -27,11 +27,7 @@ const ArticleList = () => {
   return (
     <>
       {articles.map((article) => (
-        <ArticleCard
-          key={article.article_id}
-          article={article}
-          className="article-card"
-        />
+        <ArticleCard key={article.article_id} article={article} />
       ))}
     </>
   );

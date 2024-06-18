@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const ArticleCard = ({ article }) => {
   return (
-    <ul>
+    <ul className="article-card">
       <li>
         <Link to={`/articles/${article.article_id}`}>
           <p>
