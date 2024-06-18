@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getArticleById } from "../utils/api";
+import { getArticleById, patchArticle } from "../utils/api";
 import Collapsible from "react-collapsible";
 import ArticleComments from "./ArticleComments";
+import VoteArticle from "./VoteArticle";
 
 const ArticleView = () => {
   const { article_id } = useParams();
@@ -40,7 +41,7 @@ const ArticleView = () => {
       <p>{article.body}</p>
       <p>Created on: {new Date(article.created_at).toDateString()}</p>
       <div className="article-info">
-        <p>Votes: {article.votes}</p>
+        <VoteArticle article={article} />
         <p>Comments: {article.comment_count}</p>
       </div>
       <Collapsible trigger="View all comments">
