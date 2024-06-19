@@ -9,7 +9,6 @@ const VoteArticle = ({ article }) => {
 
   const handleVote = (inc_votes) => {
     setButtonDisabled(true);
-    alert("Thank you for voting!");
     const newVotes = updatedArticle.votes + inc_votes;
     setUpdatedArticle({ ...updatedArticle, votes: newVotes });
 
@@ -19,6 +18,7 @@ const VoteArticle = ({ article }) => {
         setUpdatedArticle(updatedData);
         setArticleVotes(updatedData.votes);
         setErr(null);
+        alert("Thank you for voting!");
       })
       .catch((err) => {
         setButtonDisabled(false);
