@@ -4,6 +4,7 @@ import { getArticleById } from "../utils/api";
 import Collapsible from "react-collapsible";
 import ArticleComments from "./ArticleComments";
 import VoteArticle from "./VoteArticle";
+import CommentAdder from "./CommentAdder";
 
 const ArticleView = () => {
   const { article_id } = useParams();
@@ -49,6 +50,7 @@ const ArticleView = () => {
         <VoteArticle article={article} />
       </div>
       <p>Comments: {article.comment_count}</p>
+      <CommentAdder article_id={article_id} />
       <Collapsible trigger="View all comments">
         <ArticleComments article_id={article_id} />
       </Collapsible>
