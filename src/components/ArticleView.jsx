@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getArticleById, patchArticle } from "../utils/api";
+import { getArticleById } from "../utils/api";
 import Collapsible from "react-collapsible";
 import ArticleComments from "./ArticleComments";
 import VoteArticle from "./VoteArticle";
@@ -19,14 +19,19 @@ const ArticleView = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setErr("Sorry, something went wrong.");
+        setErr(err);
         setIsLoading(false);
       });
   }, [article_id]);
 
   if (isLoading) return <p>Loading...</p>;
 
-  if (err) return <p>{err}</p>;
+  if (err)
+    return (
+      <p className="err-msg">
+        Oops! The article you're looking for isn't here.
+      </p>
+    );
 
   return (
     <section>
@@ -42,8 +47,8 @@ const ArticleView = () => {
       <p>Created on: {new Date(article.created_at).toDateString()}</p>
       <div className="article-info">
         <VoteArticle article={article} />
-        <p>Comments: {article.comment_count}</p>
       </div>
+      <p>Comments: {article.comment_count}</p>
       <Collapsible trigger="View all comments">
         <ArticleComments article_id={article_id} />
       </Collapsible>
