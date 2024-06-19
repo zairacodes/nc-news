@@ -60,3 +60,10 @@ section {
 .err-msg {
   color: red;
 }
+
+.add-comment-input {
+  margin: 0 5px 0 5px;
+  width: 20%;
+  border: none;
+  border-bottom: 1px solid darkgrey;
+}
