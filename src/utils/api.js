@@ -37,7 +37,7 @@ export const getArticleComments = (article_id) => {
     });
 };
 
-export const patchArticle = (article_id, inc_votes) => {
+export const patchVote = (article_id, inc_votes) => {
   return ncNewsApi
     .patch(`/articles/${article_id}`, { inc_votes })
     .then((res) => {

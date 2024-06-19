@@ -12,20 +12,20 @@ const ArticleComments = ({ article_id }) => {
     getArticleComments(article_id)
       .then((commentsFromApi) => {
         if (commentsFromApi.length === 0) {
-          setErr("Oops, no comments yet!");
+          setErr("Uh-oh! No comments yet!");
         }
         setComments(commentsFromApi);
         setIsLoading(false);
       })
       .catch((err) => {
-        setErr("Sorry, something went wrong.");
+        setErr(err);
         setIsLoading(false);
       });
   }, [article_id]);
 
   if (isLoading) return <p>Loading...</p>;
 
-  if (err) return <p>{err}</p>;
+  if (err) return <p className="err-msg">{err}</p>;
 
   return (
     <>

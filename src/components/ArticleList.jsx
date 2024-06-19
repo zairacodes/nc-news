@@ -15,14 +15,19 @@ const ArticleList = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setErr("Sorry, something went wrong.");
+        setErr(err);
         setIsLoading(false);
       });
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
 
-  if (err) return <p>{err}</p>;
+  if (err)
+    return (
+      <p className="err-msg">
+        Oops! Something went wrong, please try again later.
+      </p>
+    );
 
   return (
     <>
