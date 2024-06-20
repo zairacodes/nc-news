@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { postComment } from "../utils/api";
+import { UserContext } from "../contexts/UserContext";
 
 const CommentAdder = ({ article_id, comments, setComments }) => {
+  const { user, setUser } = useContext(UserContext);
   const [newComment, setNewComment] = useState("");
   const [err, setErr] = useState("");
 
@@ -10,7 +12,7 @@ const CommentAdder = ({ article_id, comments, setComments }) => {
 
     const tempComment = {
       article_id: article_id,
-      author: "jessjelly",
+      author: user.username,
       body: newComment,
       comment_id: Date.now(),
       created_at: new Date().toISOString(),
@@ -55,15 +57,15 @@ const CommentAdder = ({ article_id, comments, setComments }) => {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="add-comment"></label>
-      <input
+      <textarea
         id="add-comment"
-        type="text"
         placeholder="Add a comment..."
         className="add-comment-input"
+        rows={1}
         onChange={handleChange}
         value={newComment}
         required
-      />
+      ></textarea>
       <button type="submit">Post Comment</button>
     </form>
   );

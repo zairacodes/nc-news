@@ -1,10 +1,16 @@
 import CommentCard from "./CommentCard";
 
-const ArticleComments = ({ comments }) => {
+const ArticleComments = ({ commentsLoading, comments, triggerRefresh }) => {
+  if (commentsLoading) return <p>Comments loading...</p>;
+
   return (
     <>
       {comments.map((comment) => (
-        <CommentCard key={comment.comment_id} comment={comment} />
+        <CommentCard
+          key={comment.comment_id}
+          comment={comment}
+          triggerRefresh={triggerRefresh}
+        />
       ))}
     </>
   );
