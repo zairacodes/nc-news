@@ -2,34 +2,39 @@ import { useContext, useState } from "react";
 import { deleteComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 
-const CommentCard = ({ comment, triggerRefresh }) => {
+const CommentCard = ({ comment, comments, setComments }) => {
   const { user, setUser } = useContext(UserContext);
   const [err, setErr] = useState("");
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
 
   const handleDelete = (comment_id) => {
+    setButtonDisabled(true);
+
     if (user.username === comment.author) {
+      const updatedComments = comments.filter(
+        (comment) => comment.comment_id !== comment_id
+      );
+      setComments(updatedComments);
+
       deleteComment(comment_id)
         .then((res) => {
-          setErr(null);
+          setButtonDisabled(false);
+          setComments(updatedComments);
+          setErr("");
           alert("Comment successfully deleted!");
-          triggerRefresh();
         })
         .catch((err) => {
+          setButtonDisabled(false);
+          setComments(comments);
           setErr(err);
-          alert(`Oops! ${err.message}.`);
+          alert(
+            "Sorry, we couldn't delete your comment. Please check your internet connection and try again."
+          );
         });
     } else {
       alert(`Uh-oh! Are you ${comment.author}?`);
     }
   };
-
-  if (err)
-    return (
-      <p className="err-msg">
-        Sorry, we couldn't delete your comment. Please check your internet
-        connection and try again.
-      </p>
-    );
 
   return (
     <ul className="comment-card">
@@ -38,9 +43,14 @@ const CommentCard = ({ comment, triggerRefresh }) => {
         <p>Author: {comment.author}</p>
         <p>Created on: {new Date(comment.created_at).toDateString()}</p>
         <p>Votes: {comment.votes}</p>
-        <button onClick={() => handleDelete(comment.comment_id)}>
-          Delete Comment
-        </button>
+        {user.username === comment.author && (
+          <button
+            onClick={() => handleDelete(comment.comment_id)}
+            disabled={isButtonDisabled}
+          >
+            Delete Comment
+          </button>
+        )}
       </li>
     </ul>
   );

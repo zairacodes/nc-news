@@ -13,9 +13,6 @@ const ArticleView = () => {
   const [err, setErr] = useState("");
   const [comments, setComments] = useState([]);
   const [commentsLoading, setCommentsLoading] = useState(false);
-  const [refresh, setRefresh] = useState(false);
-
-  const triggerRefresh = () => setRefresh((prev) => !prev);
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,7 +25,7 @@ const ArticleView = () => {
         setErr(err);
         setIsLoading(false);
       });
-  }, [article_id, refresh]);
+  }, [article_id]);
 
   useEffect(() => {
     setCommentsLoading(true);
@@ -44,7 +41,7 @@ const ArticleView = () => {
         setErr(err);
         setCommentsLoading(false);
       });
-  }, [article_id, refresh]);
+  }, [article_id]);
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -80,7 +77,7 @@ const ArticleView = () => {
         <ArticleComments
           commentsLoading={commentsLoading}
           comments={comments}
-          triggerRefresh={triggerRefresh}
+          setComments={setComments}
         />
       </Collapsible>
     </section>
