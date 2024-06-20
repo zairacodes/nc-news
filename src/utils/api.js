@@ -48,11 +48,11 @@ export const patchVote = (article_id, inc_votes) => {
     });
 };
 
-export const postComment = (article_id, newComment) => {
+export const postComment = (article_id, { tempComment }) => {
   return ncNewsApi
     .post(`/articles/${article_id}/comments`, {
-      username: "jessjelly",
-      body: newComment,
+      username: tempComment.author,
+      body: tempComment.body,
     })
     .then((res) => {
       return res.data.comment;
