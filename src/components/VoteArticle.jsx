@@ -24,7 +24,7 @@ const VoteArticle = ({ article }) => {
         setButtonDisabled(false);
         setUpdatedArticle(updatedArticle);
         setErr(err);
-        alert(`Oops! ${err.message}.`);
+        alert("Oops! Something went wrong.");
       });
   };
 

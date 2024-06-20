@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { postComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 
@@ -6,6 +6,10 @@ const CommentAdder = ({ article_id, comments, setComments }) => {
   const { user, setUser } = useContext(UserContext);
   const [newComment, setNewComment] = useState("");
   const [err, setErr] = useState("");
+
+  useEffect(() => {
+    setErr("");
+  }, [user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,14 +36,14 @@ const CommentAdder = ({ article_id, comments, setComments }) => {
           ),
         ]);
         alert("Comment successfully posted!");
+        setNewComment("");
+        setErr("");
       })
       .catch((err) => {
         setErr(err);
-        alert(`Oops! ${err.message}.`);
+        alert("Oops! Something went wrong.");
         setComments(prevComments);
       });
-
-    setNewComment("");
   };
 
   const handleChange = (e) => {
@@ -49,8 +53,8 @@ const CommentAdder = ({ article_id, comments, setComments }) => {
   if (err)
     return (
       <p className="err-msg">
-        Sorry, we couldn't process your comment. Please check your internet
-        connection and try again.
+        Sorry, we couldn't process your comment. Please log in and try again, or
+        check your internet connection.
       </p>
     );
 
