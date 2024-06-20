@@ -47,3 +47,17 @@ export const patchVote = (article_id, inc_votes) => {
       throw err;
     });
 };
+
+export const postComment = (article_id, { tempComment }) => {
+  return ncNewsApi
+    .post(`/articles/${article_id}/comments`, {
+      username: tempComment.author,
+      body: tempComment.body,
+    })
+    .then((res) => {
+      return res.data.comment;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};

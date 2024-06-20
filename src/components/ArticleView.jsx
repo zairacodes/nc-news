@@ -1,15 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getArticleById } from "../utils/api";
+import { getArticleById, getArticleComments } from "../utils/api";
 import Collapsible from "react-collapsible";
 import ArticleComments from "./ArticleComments";
 import VoteArticle from "./VoteArticle";
+import CommentAdder from "./CommentAdder";
 
 const ArticleView = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
+  const [comments, setComments] = useState([]);
+  const [commentsLoading, setCommentsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -24,7 +27,24 @@ const ArticleView = () => {
       });
   }, [article_id]);
 
+  useEffect(() => {
+    setCommentsLoading(true);
+    getArticleComments(article_id)
+      .then((commentsFromApi) => {
+        if (commentsFromApi.length === 0) {
+          setErr("Uh-oh! No comments yet!");
+        }
+        setComments(commentsFromApi);
+        setCommentsLoading(false);
+      })
+      .catch((err) => {
+        setErr(err);
+        setCommentsLoading(false);
+      });
+  }, [article_id]);
+
   if (isLoading) return <p>Loading...</p>;
+  if (commentsLoading) return <p>Comments loading...</p>;
 
   if (err)
     return (
@@ -49,8 +69,13 @@ const ArticleView = () => {
         <VoteArticle article={article} />
       </div>
       <p>Comments: {article.comment_count}</p>
+      <CommentAdder
+        article_id={article_id}
+        comments={comments}
+        setComments={setComments}
+      />
       <Collapsible trigger="View all comments">
-        <ArticleComments article_id={article_id} />
+        <ArticleComments comments={comments} />
       </Collapsible>
     </section>
   );
