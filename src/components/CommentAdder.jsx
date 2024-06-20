@@ -55,15 +55,15 @@ const CommentAdder = ({ article_id, comments, setComments }) => {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="add-comment"></label>
-      <input
+      <textarea
         id="add-comment"
-        type="text"
         placeholder="Add a comment..."
         className="add-comment-input"
+        rows={1}
         onChange={handleChange}
         value={newComment}
         required
-      />
+      ></textarea>
       <button type="submit">Post Comment</button>
     </form>
   );
