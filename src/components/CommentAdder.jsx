@@ -1,37 +1,43 @@
-import { useState, useEffect } from "react";
-import { getArticleComments, postComment } from "../utils/api";
+import { useState } from "react";
+import { postComment } from "../utils/api";
 
-const CommentAdder = ({ article_id }) => {
-  const [comments, setComments] = useState([]);
+const CommentAdder = ({ article_id, comments, setComments }) => {
   const [newComment, setNewComment] = useState("");
   const [err, setErr] = useState("");
 
-  useEffect(() => {
-    getArticleComments(article_id)
-      .then((commentsFromApi) => {
-        setComments(commentsFromApi);
-      })
-      .catch((err) => {
-        setErr(err);
-      });
-  }, [article_id]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    setComments([newComment, ...comments]);
 
-    postComment(article_id, newComment)
+    const tempComment = {
+      article_id: article_id,
+      author: "jessjelly",
+      body: newComment,
+      comment_id: Date.now(),
+      created_at: new Date().toISOString(),
+      votes: 0,
+    };
+
+    const prevComments = [...comments];
+
+    setComments((comments) => [tempComment, ...comments]);
+
+    postComment(article_id, { tempComment })
       .then((newCommentFromApi) => {
-        setNewComment("");
-        setComments([newCommentFromApi, ...comments]);
-        setErr(null);
+        setComments((prevComments) => [
+          newCommentFromApi,
+          ...prevComments.filter(
+            (comment) => comment.comment_id !== tempComment.comment_id
+          ),
+        ]);
         alert("Comment successfully posted!");
       })
       .catch((err) => {
-        setComments(comments);
         setErr(err);
         alert(`Oops! ${err.message}.`);
+        setComments(prevComments);
       });
+
+    setNewComment("");
   };
 
   const handleChange = (e) => {
