@@ -1,6 +1,8 @@
 import CommentCard from "./CommentCard";
 
-const ArticleComments = ({ comments }) => {
+const ArticleComments = ({ commentsLoading, comments }) => {
+  if (commentsLoading) return <p>Comments loading...</p>;
+
   return (
     <>
       {comments.map((comment) => (

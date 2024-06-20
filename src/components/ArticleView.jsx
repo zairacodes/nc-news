@@ -44,7 +44,6 @@ const ArticleView = () => {
   }, [article_id]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (commentsLoading) return <p>Comments loading...</p>;
 
   if (err)
     return (
@@ -75,7 +74,10 @@ const ArticleView = () => {
         setComments={setComments}
       />
       <Collapsible trigger="View all comments">
-        <ArticleComments comments={comments} />
+        <ArticleComments
+          commentsLoading={commentsLoading}
+          comments={comments}
+        />
       </Collapsible>
     </section>
   );
