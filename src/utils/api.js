@@ -4,6 +4,17 @@ const ncNewsApi = axios.create({
   baseURL: "https://be-nc-news-6djf.onrender.com/api",
 });
 
+export const getUsers = () => {
+  return ncNewsApi
+    .get("/users")
+    .then((res) => {
+      return res.data.users;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
 export const getArticles = () => {
   return ncNewsApi
     .get("/articles")
