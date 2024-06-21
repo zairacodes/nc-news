@@ -15,9 +15,20 @@ export const getUsers = () => {
     });
 };
 
-export const getArticles = () => {
+export const getTopics = () => {
   return ncNewsApi
-    .get("/articles")
+    .get("/topics")
+    .then((res) => {
+      return res.data.topics;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+export const getArticles = (topic) => {
+  return ncNewsApi
+    .get("/articles", { params: { topic } })
     .then((res) => {
       return res.data.articles;
     })
