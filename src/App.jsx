@@ -14,6 +14,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/:topic" element={<Home />} />
             <Route path="/articles/:article_id" element={<ArticleView />} />
           </Routes>
           <Footer />

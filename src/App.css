@@ -68,3 +68,9 @@ section {
   border: none;
   border-bottom: 1px solid darkgrey;
 }
+
+.user-avatar {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
