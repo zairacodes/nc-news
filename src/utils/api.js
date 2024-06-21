@@ -26,9 +26,9 @@ export const getTopics = () => {
     });
 };
 
-export const getArticles = (topic) => {
+export const getArticles = (topic, sort_by, order) => {
   return ncNewsApi
-    .get("/articles", { params: { topic } })
+    .get("/articles", { params: { topic, sort_by, order } })
     .then((res) => {
       return res.data.articles;
     })
