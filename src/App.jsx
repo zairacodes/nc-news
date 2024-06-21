@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import ArticleView from "./components/ArticleView";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/:topic" element={<Home />} />
             <Route path="/articles/:article_id" element={<ArticleView />} />
+            <Route path="*" element={<ErrorPage err="Page not found!" />} />
           </Routes>
           <Footer />
         </div>
