@@ -74,3 +74,22 @@ section {
   height: 20px;
   object-fit: contain;
 }
+
+
+.filterbytopic-dropdown {
+  display: inline;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+.sortby-dropdown {
+  display: inline;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+.order-arrows {
+  display: inline;
+  justify-content: space-evenly;
+  margin: 10px;
+}
