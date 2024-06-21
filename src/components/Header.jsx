@@ -60,7 +60,15 @@ const Header = () => {
       {!user.username ? (
         <p>Not logged in</p>
       ) : (
-        <p>Logged in as: {user.username}</p>
+        <p>
+          Hello {user.username}{" "}
+          <img
+            src={user.avatar_url}
+            alt="User Avatar"
+            className="user-avatar"
+          />{" "}
+          !
+        </p>
       )}
     </header>
   );
