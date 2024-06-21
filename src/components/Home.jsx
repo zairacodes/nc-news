@@ -12,7 +12,7 @@ const Home = () => {
   const [err, setErr] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const sortByQuery = searchParams.get("sort_by");
-  const orderQuery = searchParams.get("order");
+  const orderQuery = searchParams.get("order") || "desc";
 
   const setSortOrder = (key, value) => {
     const newParams = new URLSearchParams(searchParams);
@@ -94,7 +94,7 @@ const Home = () => {
       </div>
       <div className="order-arrows">
         <button onClick={handleOrder}>
-          {orderQuery === "asc" ? "↑" : "↓"}
+          {orderQuery === "asc" ? "↓" : "↑"}
         </button>
       </div>
       <ArticleList articles={articles} />
