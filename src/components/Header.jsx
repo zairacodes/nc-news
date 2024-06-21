@@ -66,8 +66,7 @@ const Header = () => {
             src={user.avatar_url}
             alt="User Avatar"
             className="user-avatar"
-          />{" "}
-          !
+          />
         </p>
       )}
     </header>
