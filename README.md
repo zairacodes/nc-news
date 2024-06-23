@@ -1,4 +1,4 @@
-# Northcoders News Front-end Application
+# NC News Application
 
 Hello there!
 
@@ -9,7 +9,14 @@ Please note that since this project works on an API hosted on a free plan, there
 
 ## Overview
 
-Northcoders News is a social news aggregation, web content rating and discussion website. Articles are categorised into topics, with each article featuring user-curated ratings through upvotes and downvotes. Users can log in and out, as well as add and delete comments on articles. Additionally, users can sort articles by date created, number of comments and number of votes, with options to toggle between ascending and descending order.
+NC News is a hub for article readers where users can log in, comment and vote on articles. Readers can filter articles by topic and sort them by creation date, number of comments or votes, in ascending or descending order.
+
+## Tech Stack
+
+- **Frontend**: HTML, CSS, React
+- **Build Tool**: Vite
+- **HTTP Requests**: Axios
+- **Deployment**: Netlify
 
 ## Getting Started
 
@@ -40,18 +47,16 @@ To run the project locally, follow these steps:
    npm run dev
    ```
 
-Feel free to reach out if you have any questions or feedback!
-
----
-
-Useful Links:
+## Useful Links
 
 - [Back-end Project](https://github.com/zairacodes/be-nc-news/)
 - [API](https://be-nc-news-6djf.onrender.com/api/)
 - [Front-end Application](https://ncnews-zaira.netlify.app/)
 
+Feel free to reach out if you have any questions or feedback!
+
 ---
 
 This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/)
 
-Made with ❤️ by [Zaira](https://www.linkedin.com/in/zaira-n/)
+[![Made with ♥ by Zaira](https://img.shields.io/badge/Made%20with%20%E2%9D%A4%20by-Zaira-red)](https://www.linkedin.com/in/zaira-n/)
