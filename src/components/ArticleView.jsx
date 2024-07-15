@@ -5,6 +5,7 @@ import Collapsible from "react-collapsible";
 import ArticleComments from "./ArticleComments";
 import VoteArticle from "./VoteArticle";
 import CommentAdder from "./CommentAdder";
+import Loading from "./Loading";
 
 const ArticleView = () => {
   const { article_id } = useParams();
@@ -43,7 +44,7 @@ const ArticleView = () => {
       });
   }, [article_id]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
 
   if (err)
     return (

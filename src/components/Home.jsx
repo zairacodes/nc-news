@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import ArticleList from "./ArticleList";
 import { getArticles, getTopics } from "../utils/api";
+import Loading from "./Loading";
 
 const Home = () => {
   const { topic } = useParams();
@@ -53,7 +54,7 @@ const Home = () => {
     setSortOrder("order", newOrder);
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
 
   if (err)
     return (
