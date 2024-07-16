@@ -61,11 +61,23 @@ footer,
 section, 
 .article-card, 
 .Collapsible, 
-.comment-card {
+.comment-card,
+.loading-container {
   background-color: var(--color-element-background-light);
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
+.loading-text {
+  color: var(--color-charcoalGrey);
 }
 
 .article-card {
@@ -143,8 +155,13 @@ section,
   section, 
   .article-card, 
   .Collapsible, 
-  .comment-card {
+  .comment-card,
+  .loading-container {
     background-color: var(--color-element-background-dark);
+  }
+
+  .loading-text {
+    color: var(--color-lightGrey);
   }
 
   .add-comment-input {
