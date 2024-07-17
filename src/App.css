@@ -73,7 +73,7 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  min-width: 80%;
 }
 
 .loading-text {
