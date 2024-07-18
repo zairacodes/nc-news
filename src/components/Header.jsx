@@ -29,22 +29,25 @@ const Header = () => {
 
   if (err)
     return (
-      <p className="err-msg">
+      <p className="err-msg" aria-label="Error message">
         Oops! Something went wrong, please try again later.
       </p>
     );
 
   return (
-    <header>
-      <Link to="/">
-        <h1>NC News</h1>
-      </Link>
+    <header aria-label="Header section">
+      <nav aria-label="Navigation">
+        <Link to="/" aria-label="Link to homepage">
+          <h1>NC News</h1>
+        </Link>
+      </nav>
       <div className="login-dropdown">
         <label>Log in: </label>
         <select
           onChange={handleSelect}
           value={user.username || ""}
           className="usernames-dropdown"
+          aria-label="Select a user"
         >
           <option value="" disabled>
             Select a user
@@ -54,20 +57,25 @@ const Header = () => {
               {user.username}
             </option>
           ))}
-          <option value="logout">Log out</option>
         </select>
       </div>
       {!user.username ? (
-        <p>Not logged in</p>
+        <p aria-label="Login status">Not logged in</p>
       ) : (
-        <p>
-          Hello {user.username}{" "}
-          <img
-            src={user.avatar_url}
-            alt="User Avatar"
-            className="user-avatar"
-          />
-        </p>
+        <>
+          <p aria-label="Login status">
+            Hello {user.username}{" "}
+            <img
+              src={user.avatar_url}
+              alt="User Avatar"
+              className="user-avatar"
+              aria-label="User Avatar"
+            />
+          </p>
+          <button onClick={() => setUser("")} aria-label="Log out">
+            Log out
+          </button>
+        </>
       )}
     </header>
   );
