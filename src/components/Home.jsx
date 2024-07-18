@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import {
+  useParams,
+  useSearchParams,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import ArticleList from "./ArticleList";
 import { getArticles, getTopics } from "../utils/api";
 import Loading from "./Loading";
@@ -7,6 +12,7 @@ import Loading from "./Loading";
 const Home = () => {
   const { topic } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [articles, setArticles] = useState([]);
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +47,11 @@ const Home = () => {
       .catch((err) => {
         setErr(err);
       });
-  }, [topic, sortByQuery, orderQuery]);
+  }, [topic, sortByQuery, orderQuery, location]);
+
+  useEffect(() => {
+    setErr("");
+  }, [location]);
 
   const handleSelect = (e) => {
     e.preventDefault();
@@ -56,51 +66,65 @@ const Home = () => {
 
   if (isLoading) return <Loading />;
 
-  if (err)
+  if (err.response && err.response.status === 404) {
     return (
-      <p className="err-msg">
+      <p className="err-msg" aria-label="Error message">
+        Oops! Page not found. Please check the URL and try again.
+      </p>
+    );
+  } else if (err) {
+    return (
+      <p className="err-msg" aria-label="Error message">
         Oops! Something went wrong, please try again later.
       </p>
     );
-
-  return (
-    <section>
-      <h2>{topic ? `Articles about ${topic}` : "Welcome to NC News"}</h2>{" "}
-      <div className="filterbytopic-dropdown">
-        <label>Topic: </label>
-        <select
-          onChange={handleSelect}
-          value={topic || ""}
-          className="topics-dropdown"
-        >
-          <option value="all">all</option>
-          {topics.map((topic) => (
-            <option key={topic.slug} value={topic.slug}>
-              {topic.slug}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="sortby-dropdown">
-        <label>Sort by: </label>
-        <select
-          onChange={(e) => setSortOrder("sort_by", e.target.value)}
-          value={sortByQuery || ""}
-          className="sortbyoptions-dropdown"
-        >
-          <option value="created_at">date</option>
-          <option value="comment_count">comments</option>
-          <option value="votes">votes</option>
-        </select>
-      </div>
-      <div className="order-arrows">
-        <button onClick={handleOrder}>
-          {orderQuery === "asc" ? "↓" : "↑"}
-        </button>
-      </div>
-      <ArticleList articles={articles} />
-    </section>
-  );
+  } else {
+    return (
+      <section aria-label="Homepage">
+        <h2>{topic ? `Articles about ${topic}` : "Welcome to NC News"}</h2>{" "}
+        <div className="filterbytopic-dropdown">
+          <label>Topic: </label>
+          <select
+            onChange={handleSelect}
+            value={topic || ""}
+            className="topics-dropdown"
+            aria-label="Filter articles by topic"
+          >
+            <option value="all">all</option>
+            {topics.map((topic) => (
+              <option key={topic.slug} value={topic.slug}>
+                {topic.slug}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="sortby-dropdown">
+          <label>Sort by: </label>
+          <select
+            onChange={(e) => setSortOrder("sort_by", e.target.value)}
+            value={sortByQuery || ""}
+            className="sortbyoptions-dropdown"
+            aria-label="Sort articles by"
+          >
+            <option value="created_at">date</option>
+            <option value="comment_count">comments</option>
+            <option value="votes">votes</option>
+          </select>
+        </div>
+        <div className="order-arrows">
+          <button
+            onClick={handleOrder}
+            aria-label={`Sort articles in ${
+              orderQuery === "asc" ? "descending" : "ascending"
+            } order`}
+          >
+            {orderQuery === "asc" ? "↓" : "↑"}
+          </button>
+        </div>
+        <ArticleList articles={articles} />
+      </section>
+    );
+  }
 };
 
 export default Home;
