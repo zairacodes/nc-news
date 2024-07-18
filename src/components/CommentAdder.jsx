@@ -52,7 +52,7 @@ const CommentAdder = ({ article_id, comments, setComments }) => {
 
   if (err)
     return (
-      <p className="err-msg">
+      <p className="err-msg" aria-label="Error message">
         Sorry, we couldn't process your comment. Please log in and try again, or
         check your internet connection.
       </p>
@@ -63,6 +63,7 @@ const CommentAdder = ({ article_id, comments, setComments }) => {
       <label htmlFor="add-comment"></label>
       <textarea
         id="add-comment"
+        aria-label="Add a comment"
         placeholder="Add a comment..."
         className="add-comment-input"
         rows={1}
@@ -70,7 +71,9 @@ const CommentAdder = ({ article_id, comments, setComments }) => {
         value={newComment}
         required
       ></textarea>
-      <button type="submit">Post Comment</button>
+      <button type="submit" aria-label="Post comment">
+        Post Comment
+      </button>
     </form>
   );
 };

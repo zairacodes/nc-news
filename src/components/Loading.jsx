@@ -8,7 +8,7 @@ export default function CircularIndeterminate() {
       className="loading-container"
       sx={{ position: "relative", display: "inline-flex" }}
     >
-      <CircularProgress />
+      <CircularProgress role="progressbar" aria-label="Loading..." />
     </Box>
   );
 }

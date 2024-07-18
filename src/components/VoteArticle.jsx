@@ -30,7 +30,7 @@ const VoteArticle = ({ article }) => {
 
   if (err)
     return (
-      <p className="err-msg">
+      <p className="err-msg" aria-label="Error message">
         Sorry, we couldn't process your vote. Please check your internet
         connection and try again.
       </p>
@@ -40,10 +40,10 @@ const VoteArticle = ({ article }) => {
     <>
       <p>Votes: {updatedArticle.votes}</p>
       <button disabled={isButtonDisabled} onClick={() => handleVote(1)}>
-        <span aria-label="upvotes for this article">👍🏻</span>
+        <span aria-label="Upvote for this article">👍🏻</span>
       </button>{" "}
       <button disabled={isButtonDisabled} onClick={() => handleVote(-1)}>
-        <span aria-label="downvotes for this article">👎🏻</span>
+        <span aria-label="Downvote for this article">👎🏻</span>
       </button>
     </>
   );

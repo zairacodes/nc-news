@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer>
+    <footer aria-label="Footer section">
       &copy; 2024{" "}
       <a
         href="https://www.linkedin.com/in/zaira-n/"

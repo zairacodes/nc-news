@@ -37,7 +37,11 @@ const ArticleList = ({ articles }) => {
   return (
     <>
       {paginatedArticles.map((article) => (
-        <ArticleCard key={article.article_id} article={article} />
+        <ArticleCard
+          key={article.article_id}
+          article={article}
+          aria-label={`Article: ${article.title}`}
+        />
       ))}
       <Stack
         spacing={2}
@@ -54,6 +58,7 @@ const ArticleList = ({ articles }) => {
           onChange={handlePageChange}
           variant="outlined"
           sx={colours}
+          aria-label="Pagination"
         />
       </Stack>
     </>

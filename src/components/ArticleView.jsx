@@ -48,13 +48,13 @@ const ArticleView = () => {
 
   if (err)
     return (
-      <p className="err-msg">
+      <p className="err-msg" aria-label="Error message">
         Oops! The article you're looking for isn't here.
       </p>
     );
 
   return (
-    <section>
+    <article>
       <h2>{article.title}</h2>
       <p>by {article.author}</p>
       <img
@@ -62,26 +62,31 @@ const ArticleView = () => {
         alt={article.title}
         width={400}
         className="article-img"
+        aria-label={`Article image: ${article.title}`}
       />
       <p>{article.body}</p>
       <p>Created on: {new Date(article.created_at).toDateString()}</p>
       <div className="article-info">
-        <VoteArticle article={article} />
+        <VoteArticle article={article} aria-label="Vote for this article" />
       </div>
       <p>Comments: {article.comment_count}</p>
       <CommentAdder
         article_id={article_id}
         comments={comments}
         setComments={setComments}
+        aria-label="Add a comment"
       />
-      <Collapsible trigger="View all comments">
+      <Collapsible
+        trigger="View all comments"
+        aria-label="View all comments for this article"
+      >
         <ArticleComments
           commentsLoading={commentsLoading}
           comments={comments}
           setComments={setComments}
         />
       </Collapsible>
-    </section>
+    </article>
   );
 };
 

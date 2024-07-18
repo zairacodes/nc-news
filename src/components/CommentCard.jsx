@@ -37,7 +37,7 @@ const CommentCard = ({ comment, comments, setComments }) => {
   };
 
   return (
-    <ul className="comment-card">
+    <ul className="comment-card" aria-label="Comment">
       <li key={comment.comment_id}>
         <p>{comment.body}</p>
         <p>Author: {comment.author}</p>
@@ -47,6 +47,7 @@ const CommentCard = ({ comment, comments, setComments }) => {
           <button
             onClick={() => handleDelete(comment.comment_id)}
             disabled={isButtonDisabled}
+            aria-label="Delete comment"
           >
             Delete Comment
           </button>
