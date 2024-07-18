@@ -1,7 +1,8 @@
 import CommentCard from "./CommentCard";
+import Loading from "./Loading";
 
 const ArticleComments = ({ commentsLoading, comments, setComments }) => {
-  if (commentsLoading) return <p>Comments loading...</p>;
+  if (commentsLoading) return <Loading />;
 
   return (
     <>
