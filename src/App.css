@@ -131,6 +131,7 @@ section,
   object-fit: contain;
   border-radius: 50px;
   background-color: var(--color-lightGrey);
+  vertical-align: middle;
 }
 
 .filterbytopic-dropdown,
