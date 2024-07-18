@@ -18,6 +18,20 @@ const ArticleList = ({ articles }) => {
     setPage(value);
   };
 
+  const colours = {
+    "& .MuiPaginationItem-page, & .MuiPaginationItem-previousNext": {
+      bgcolor: "var(--color-teal)",
+      color: "var(--color-lightGrey)",
+    },
+    "& .Mui-selected": {
+      bgcolor: "var(--color-lightGrey) !important",
+      color: "var(--color-charcoalGrey) !important",
+    },
+    "& .MuiPaginationItem-ellipsis": {
+      color: "grey",
+    },
+  };
+
   if (!articles.length) return <p>Sorry, no articles available.</p>;
 
   return (
@@ -27,24 +41,19 @@ const ArticleList = ({ articles }) => {
       ))}
       <Stack
         spacing={2}
-        justifyContent="center"
-        mt={3}
+        mt={2}
+        mb={1}
         sx={{
           display: "flex",
           alignItems: "center",
-          "& .MuiPaginationItem-root": {
-            color: "var(--color-selected)",
-          },
-          "& .Mui-selected": {
-            backgroundColor: "var(--color-teal)",
-            color: "white",
-          },
         }}
       >
         <Pagination
           count={Math.ceil(articles.length / articlesPerPage)}
           page={page}
           onChange={handlePageChange}
+          variant="outlined"
+          sx={colours}
         />
       </Stack>
     </>
