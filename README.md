@@ -1,19 +1,26 @@
-# NC News Application
+# NC News
 
 Hello there!
 
 Thank you for your interest in my first front-end project.
 
-You can explore the deployed version of the app [here](https://ncnews-zaira.netlify.app/).  
+You can explore the deployed version of the web app [here](https://ncnews-zaira.netlify.app/).  
 Please note that since this project works on an API hosted on a free plan, there may be delays of 50 seconds or more due to inactivity causing the server to spin down. Thanks for your patience.
 
 ## Overview
 
 NC News is a hub for article readers where users can log in, comment and vote on articles. Readers can filter articles by topic and sort them by creation date, number of comments or votes, in ascending or descending order.
 
+### Homepage Preview
+
+<p align="center">
+  <img width="500" alt="nc_news_light" src="https://github.com/user-attachments/assets/1eb1031f-36af-452f-9a59-252e5a43269c">
+  <img width="500" alt="nc_news_dark" src="https://github.com/user-attachments/assets/db055b6b-ca88-4fe6-82a7-cc7565df89c5">
+</p>
+
 ## Tech Stack
 
-- **Frontend**: HTML, CSS, React
+- **Frontend**: HTML, CSS, React, MUI
 - **Build Tool**: Vite
 - **HTTP Requests**: Axios
 - **Deployment**: Netlify
