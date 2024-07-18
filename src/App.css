@@ -136,6 +136,10 @@ section,
   margin-right: 5px;
 }
 
+footer {
+  padding: 20px;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     color: var(--color-lightGrey);

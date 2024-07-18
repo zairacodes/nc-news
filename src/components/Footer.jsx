@@ -1,7 +1,15 @@
 const Footer = () => {
   return (
     <footer>
-      <p>Contacts</p>
+      &copy; 2024{" "}
+      <a
+        href="https://www.linkedin.com/in/zaira-n/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Zaira
+      </a>
+      . All rights reserved.
     </footer>
   );
 };
