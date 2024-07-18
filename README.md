@@ -13,10 +13,7 @@ NC News is a hub for article readers where users can log in, comment and vote on
 
 ### Homepage Preview
 
-<p align="center">
-  <img width="500" alt="nc_news_light" src="https://github.com/user-attachments/assets/1eb1031f-36af-452f-9a59-252e5a43269c">
-  <img width="500" alt="nc_news_dark" src="https://github.com/user-attachments/assets/db055b6b-ca88-4fe6-82a7-cc7565df89c5">
-</p>
+![nc_news](src/utils/nc_news.gif)
 
 ## Tech Stack
 
